@@ -10,9 +10,9 @@ type Link struct {
 // TODO: Create this with only stdlib
 /*
 
-// Parse takes in an html document and returns a slice
+// ParseLinks takes in an html document and returns a slice
 // of links parsed from it.
-func Links(r io.Reader) ([]Link, error) {
+func ParseLinks(r io.Reader) ([]Link, error) {
 	doc, err := html.Parse(r)
 	if err != nil {
 		return nil, err
@@ -34,7 +34,7 @@ func linkNodes(n *html.Node) (nodes []*html.Node) {
 	if n.Type == html.ElementNode && n.Data == "a" {
 		return []*html.Node{n}
 	}
-
+w
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		nodes = append(nodes, linkNodes(c)...)
 	}

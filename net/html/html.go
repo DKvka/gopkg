@@ -1,5 +1,12 @@
 package html
 
+import (
+	"fmt"
+	"io"
+
+	"golang.org/x/net/html"
+)
+
 // Link represents a link in an html document
 // <a href="...">Text</a>
 type Link struct {
@@ -8,7 +15,6 @@ type Link struct {
 }
 
 // TODO: Create this with only stdlib
-/*
 
 // Parse takes in an html document and returns a slice
 // of links parsed from it.
@@ -52,5 +58,3 @@ func makeLink(n *html.Node) (link Link) {
 	link.Text = "TODO: Parse text"
 	return
 }
-	
-*/

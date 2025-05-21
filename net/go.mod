@@ -1,4 +1,4 @@
-module github.com/dkvka/gopkg/net/html
+module github.com/dkvka/gopkg/net
 
 go 1.24.1
 

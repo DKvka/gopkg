@@ -40,7 +40,7 @@ func linkNodes(n *html.Node) (nodes []*html.Node) {
 	if n.Type == html.ElementNode && n.Data == "a" {
 		return []*html.Node{n}
 	}
-w
+	
 	for c := n.FirstChild; c != nil; c = c.NextSibling {
 		nodes = append(nodes, linkNodes(c)...)
 	}

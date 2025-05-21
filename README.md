@@ -1,5 +1,5 @@
 # gopkg
-Useful go modules (re)created by DKvka
+Useful go modules
 
 ## modules
 

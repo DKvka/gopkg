@@ -16,4 +16,7 @@
 		res := <- results
 		// Process result
 	}
+	// You could also use a range over the channel, but you need to
+	// implement a way for the results channel to close after every
+	// part is processed or the loop will block forever
 ```

@@ -3,7 +3,7 @@
 ```
   parts, err := splitfile.GetParts(filePath, workerCount)
 	if err != nil {
-		return time.Duration(0), err
+		log.Fatal(err)
 	}
 
   resultChan := make(chan result)

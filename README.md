@@ -5,5 +5,5 @@ Useful go modules
 
 ### Installation:
 ```
-go get github.com/dkvka/gopkg/modulename/packagename
+go get github.com/dkvka/gopkg/modulename
 ```

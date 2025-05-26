@@ -23,7 +23,7 @@
 	// part is processed or the loop will block forever
 ```
 
-### How to process parts:
+### Example of part processing function:
 ```
 
 ```

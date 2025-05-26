@@ -2,7 +2,7 @@
 
 ### Get parts:
 ```go
-	parts, err := splitfile.GetParts(filePath, workerCount, maxLineLength)
+	parts, err := splitfile.GetParts(filePath, partCount, maxLineLength)
 	if err != nil {
 		log.Fatal(err)
 	}

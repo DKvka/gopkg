@@ -30,7 +30,7 @@ You could also use a range over the channel, but you need to implement a way for
 
 ## File part processing function boilerplate:
 ```go
-	func processParts(filePath string, offset, size int64, results chan resultType) {
+	func processPart(filePath string, offset, size int64, results chan resultType) {
 		file, err := os.Open(filePath)
 		if err != nil {
 			panic(err)

@@ -64,12 +64,10 @@ func GetParts(path string, partCount int, maxLineLen int64) ([]part, error) {
 
 type ResultType interface{}
 
-type LineProcessor[T string | []byte] func(T, *ResultType)
-
 // ProcessPart processes a split part of a file gotten from GetParts
 // Note that ResultType can be any type
 // Refer to README for explanation
-func ProcessPart[T string | []byte](filePath string, p part, results chan ResultType, processLine LineProcessor[T]) {
+func ProcessPart[T string | []byte](filePath string, p part, results chan ResultType, processLine func(T, *ResultType)) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		panic(err)

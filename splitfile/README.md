@@ -19,15 +19,13 @@
 
 ### Wait for results:
 ```
-	// Wait for results to start coming in
 	for i := 0; i < len(parts); i++ {
 		res := <- results
 		// Process result
 	}
-	// You could also use a range over the channel, but you need to
-	// implement a way for the results channel to close after every
-	// part is processed or the loop will block forever
 ```
+
+You could also use a range over the channel, but you need to implement a way for the results channel to close after every part is processed or the loop will block forever
 
 ### Example of part processing function:
 ```

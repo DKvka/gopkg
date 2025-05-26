@@ -21,9 +21,7 @@ func (p *part) Size() int64 {
 
 // GetParts divides the given file into Parts which can be used for concurrently reading a file
 // a part has the methods part.Size() and part.Offset()
-func GetParts(path string, partCount int) ([]part, error) {
-	const maxLineLen = 100
-
+func GetParts(path string, partCount int, maxLineLen int) ([]part, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, err

@@ -1,7 +1,7 @@
 ## GetParts examples:
 
 ### Get parts:
-```
+```go
 	parts, err := splitfile.GetParts(filePath, workerCount, maxLineLength)
 	if err != nil {
 		log.Fatal(err)

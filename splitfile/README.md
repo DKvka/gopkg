@@ -4,6 +4,7 @@
 ```go
 	parts, err := splitfile.GetParts(filePath, partCount, maxLineLength)
 	if err != nil {
+		// Stop process, error in GetParts means you need to start over
 		log.Fatal(err)
 	}
 ```

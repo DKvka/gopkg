@@ -27,7 +27,7 @@
 
 You could also use a range over the channel, but you need to implement a way for the results channel to close after every part is processed or the loop will block forever. This way is easier.
 
-### Example of part processing function:
+### Split up file processing function boilerplate:
 ```
 	func processParts(filePath string, offset, size int64, results chan resultType) {
 		file, err := os.Open(filePath)

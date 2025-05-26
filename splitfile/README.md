@@ -6,7 +6,7 @@
 		log.Fatal(err)
 	}
 	
-	results := make(chan result)
+	results := make(chan resultType)
 	for _, part := range parts {
 		go processPart(filePath, part.Offset(), part.Size(), results)
 	}

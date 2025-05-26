@@ -6,13 +6,19 @@
 	if err != nil {
 		log.Fatal(err)
 	}
+```
 
+### Start processing:
+```
 	// resultType can be anything you need to get back from the file
 	results := make(chan resultType)
 	for _, part := range parts {
 		go processPart(filePath, part.Offset(), part.Size(), results)
 	}
-	
+```
+
+### Wait for results:
+```
 	// Wait for results to start coming in
 	for i := 0; i < len(parts); i++ {
 		res := <- results
@@ -25,5 +31,7 @@
 
 ### Example of part processing function:
 ```
-
+	func processParts(filePath string, offset, size int64, results chan resultType) {
+		
+	}
 ```

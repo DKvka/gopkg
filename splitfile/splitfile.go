@@ -66,7 +66,7 @@ type ResultType interface{}
 
 // ProcessPart processes a split part of a file from GetParts
 // Note that ResultType can be any type
-// Refer to README for explanation
+// Refer to README for examples
 func ProcessPart[T string | []byte](filePath string, p part, results chan ResultType, processLine func(T, *ResultType)) {
 	file, err := os.Open(filePath)
 	if err != nil {

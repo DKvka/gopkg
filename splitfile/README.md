@@ -5,7 +5,8 @@
 	if err != nil {
 		log.Fatal(err)
 	}
-	
+
+	// resultType can be anything you need to get back from the file
 	results := make(chan resultType)
 	for _, part := range parts {
 		go processPart(filePath, part.Offset(), part.Size(), results)

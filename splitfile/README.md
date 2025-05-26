@@ -30,6 +30,23 @@ You could also use a range over the channel, but you need to implement a way for
 ### Example of part processing function:
 ```
 	func processParts(filePath string, offset, size int64, results chan resultType) {
+		file, err := os.Open(filePath)
+		if err != nil {
+			panic(err)
+		}
+		defer file.Close()
+	
+		_, err = file.Seek(fileOffset, io.SeekStart)
+		if err != nil {
+			panic(err)
+		}
 		
+		f := io.LimitedReader{R: file, N: fileSize}
+	
+		scanner := bufio.NewScanner(&f)
+		for scanner.Scan() {
+			// Process
+		}
+		resultChan <- stationStats
 	}
 ```

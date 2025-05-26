@@ -1,6 +1,6 @@
 ## GetParts examples:
 
-### Get parts, start processing and wait for processed results to come in:
+### Get parts:
 ```
 	parts, err := splitfile.GetParts(filePath, workerCount, maxLineLength)
 	if err != nil {

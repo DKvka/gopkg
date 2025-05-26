@@ -1,4 +1,4 @@
-package html
+package parse
 
 import (
 	"fmt"
@@ -16,9 +16,9 @@ type Link struct {
 
 // TODO: Create this with only stdlib
 
-// ParseLinks takes in an html document and returns a slice
+// parse.Links takes in an html document and returns a slice
 // of links parsed from it.
-func ParseLinks(r io.Reader) ([]Link, error) {
+func Links(r io.Reader) ([]Link, error) {
 	doc, err := html.Parse(r)
 	if err != nil {
 		return nil, err

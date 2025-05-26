@@ -27,7 +27,7 @@
 
 You could also use a range over the channel, but you need to implement a way for the results channel to close after every part is processed or the loop will block forever. This way is easier.
 
-### Split up file processing function boilerplate:
+### File part processing function boilerplate:
 ```
 	func processParts(filePath string, offset, size int64, results chan resultType) {
 		file, err := os.Open(filePath)
@@ -35,18 +35,21 @@ You could also use a range over the channel, but you need to implement a way for
 			panic(err)
 		}
 		defer file.Close()
-	
+
 		_, err = file.Seek(fileOffset, io.SeekStart)
 		if err != nil {
 			panic(err)
 		}
-		
+
 		f := io.LimitedReader{R: file, N: fileSize}
-	
+
+		var processedResult resultType
+
 		scanner := bufio.NewScanner(&f)
 		for scanner.Scan() {
 			// Process
 		}
-		resultChan <- stationStats
+
+		resultChan <- processedResult
 	}
 ```

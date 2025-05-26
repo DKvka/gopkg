@@ -1,6 +1,7 @@
 package splitfile
 
 import (
+	"bufio"
 	"bytes"
 	"fmt"
 	"io"
@@ -11,16 +12,7 @@ type part struct {
 	offset, size int64
 }
 
-func (p *part) Offset() int64 {
-	return p.offset
-}
-
-func (p *part) Size() int64 {
-	return p.size
-}
-
-// GetParts divides the given file into Parts which can be used for concurrently reading a file
-// a part has the methods part.Size() and part.Offset()
+// GetParts divides the given file into parts which can be used for concurrently reading a file
 func GetParts(path string, partCount int, maxLineLen int64) ([]part, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -68,4 +60,49 @@ func GetParts(path string, partCount int, maxLineLen int64) ([]part, error) {
 	}
 
 	return parts, nil
+}
+
+type ResultType interface{}
+
+type LineProcessor[T string | []byte] func(T, *ResultType)
+
+// ProcessPart processes a split part of a file gotten from GetParts
+// Note that ResultType can be any type
+// Refer to README for explanation
+func ProcessPart[T string | []byte](filePath string, p part, results chan ResultType, processLine LineProcessor[T]) {
+	file, err := os.Open(filePath)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	_, err = file.Seek(p.offset, io.SeekStart)
+	if err != nil {
+		panic(err)
+	}
+
+	f := io.LimitedReader{R: file, N: p.size}
+
+	var processedResult ResultType
+
+	var TIsString bool
+	switch any(*new(T)).(type) {
+	case string:
+		TIsString = true
+	case []byte:
+		TIsString = false
+	}
+
+	scanner := bufio.NewScanner(&f)
+	for scanner.Scan() {
+		var line T
+		if TIsString {
+			line = T(scanner.Text())
+		} else {
+			line = T(scanner.Bytes())
+		}
+		processLine(line, &processedResult)
+	}
+
+	results <- processedResult
 }

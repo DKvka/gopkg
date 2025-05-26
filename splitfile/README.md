@@ -1,5 +1,6 @@
-## GetParts example use
+## GetParts examples:
 
+### Get parts, start processing and wait for processed results to come in:
 ```
 	parts, err := splitfile.GetParts(filePath, workerCount, maxLineLength)
 	if err != nil {
@@ -20,4 +21,9 @@
 	// You could also use a range over the channel, but you need to
 	// implement a way for the results channel to close after every
 	// part is processed or the loop will block forever
+```
+
+### How to process parts:
+```
+
 ```

@@ -64,7 +64,7 @@ func GetParts(path string, partCount int, maxLineLen int64) ([]part, error) {
 
 type ResultType interface{}
 
-// ProcessPart processes a split part of a file gotten from GetParts
+// ProcessPart processes a split part of a file from GetParts
 // Note that ResultType can be any type
 // Refer to README for explanation
 func ProcessPart[T string | []byte](filePath string, p part, results chan ResultType, processLine func(T, *ResultType)) {

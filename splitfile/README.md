@@ -1,6 +1,6 @@
-## GetParts examples:
+# GetParts examples:
 
-### Get parts:
+## Get parts:
 ```go
 	parts, err := splitfile.GetParts(filePath, partCount, maxLineLength)
 	if err != nil {
@@ -8,7 +8,7 @@
 	}
 ```
 
-### Start processing:
+## Start processing:
 ```go
 	// resultType can be anything you need to get back from the file
 	results := make(chan resultType)
@@ -17,7 +17,7 @@
 	}
 ```
 
-### Wait for results:
+## Wait for results:
 ```go
 	for i := 0; i < len(parts); i++ {
 		res := <- results
@@ -27,7 +27,7 @@
 
 You could also use a range over the channel, but you need to implement a way for the results channel to close after every part is processed or the loop will block forever. This way is easier.
 
-### File part processing function boilerplate:
+## File part processing function boilerplate:
 ```go
 	func processParts(filePath string, offset, size int64, results chan resultType) {
 		file, err := os.Open(filePath)

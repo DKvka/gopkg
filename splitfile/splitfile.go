@@ -12,6 +12,14 @@ type part struct {
 	offset, size int64
 }
 
+func (p part) Offset() int64 {
+	return p.offset
+}
+
+func (p part) Size() int64 {
+	return p.size
+}
+
 // GetParts divides the given file into parts which can be used for concurrently reading a file
 func GetParts(path string, partCount int, maxLineLen int64) ([]part, error) {
 	file, err := os.Open(path)

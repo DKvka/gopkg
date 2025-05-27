@@ -105,7 +105,11 @@ func ProcessPart[T string | []byte](filePath string, p part, results chan any, p
 		} else {
 			line = T(scanner.Bytes())
 		}
-		processLine(line, &processedResult)
+		
+		err = processLine(line, &processedResult)
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	results <- processedResult

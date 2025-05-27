@@ -73,7 +73,7 @@ func GetParts(path string, partCount int, maxLineLen int64) ([]part, error) {
 // ProcessPart processes a split part of a file from GetParts
 // results and the second argument to processLine must be of the same type
 // Refer to README for examples
-func ProcessPart[T string | []byte](filePath string, p part, results chan any, processLine func(T, *any)) {
+func ProcessPart[T string | []byte](filePath string, p part, results chan any, processLine func(T, *any) error) {
 	file, err := os.Open(filePath)
 	if err != nil {
 		panic(err)
